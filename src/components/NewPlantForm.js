@@ -5,14 +5,17 @@ function NewPlantForm() {
   const [plantImage, setPlantImage] = useState("")
   const [plantPrice, setPlantPrice] = useState("")
   
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault()
     console.log('submitted!')
   }
 
   return (
     <div className="new-plant-form">
       <h2>New Plant</h2>
-      <form>
+      <form
+         onSubmit={handleSubmit}
+      >
         <input 
           type="text" 
           name="name" 
@@ -33,14 +36,9 @@ function NewPlantForm() {
           step="0.01" 
           placeholder="Price" 
           value={plantPrice}
-          onChange={event => setPlantPrice(event.target.value)}
+          onChange={event => setPlantPrice(parseFloat(event.target.value))}
         />
-        <button 
-          type="submit"
-          onSubmit={handleSubmit}
-        >
-          Add Plant
-        </button>
+        <button type="submit">Add Plant</button>
       </form>
     </div>
   );
